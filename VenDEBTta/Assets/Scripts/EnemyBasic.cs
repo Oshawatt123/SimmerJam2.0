@@ -10,9 +10,13 @@ public class EnemyBasic : MonoBehaviour
         seeking,
         attacking
     };
-    private states state = states.seeking;
+    private states state = states.idle;
 
-    private Vector2 moveVector;
+    public float seekRange;
+    public float attackRange;
+
+    public float moveSpeed;
+    private Rigidbody2D rb2d;
 
     private Transform player = null;
 
@@ -26,6 +30,7 @@ public class EnemyBasic : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -33,12 +38,24 @@ public class EnemyBasic : MonoBehaviour
     {
         if(player)
         {
+            Vector2 vectorToPlayer = player.transform.position - this.transform.position;
             if (state == states.seeking)
             {
                 // seek the player
-                moveVector = player.transform.position - this.transform.position;
+                rb2d.velocity = vectorToPlayer * moveSpeed * Time.deltaTime;
 
                 // if in range then state == states.attacking
+                if(vectorToPlayer.magnitude < attackRange)
+                {
+
+                }
+            }
+            else if (state == states.idle)
+            {
+                if(vectorToPlayer.magnitude < seekRange)
+                {
+                    state = states.seeking;
+                }
             }
             else if (state == states.attacking)
             {
@@ -65,5 +82,14 @@ public class EnemyBasic : MonoBehaviour
             Health -= damage;
             damageTimer = InvulnerabilityTime;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, seekRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, attackRange);
     }
 }
