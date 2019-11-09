@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Grounded))]
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
@@ -18,13 +17,12 @@ public class PlayerMove : MonoBehaviour
 
     private Vector2 movement;
 
-    private Grounded grounded;
+    public Grounded grounded;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        grounded = GetComponent<Grounded>();
     }
 
     // Update is called once per frame
@@ -43,11 +41,21 @@ public class PlayerMove : MonoBehaviour
 
         // Move & reset movement vector for next frame
         rb2D.velocity = movement * Time.deltaTime;
-        movement.x = 0f;
         if(!grounded.isGrounded)
         {
             movement.y = Mathf.Max(-maxFallSpeed, movement.y - rb2D.gravityScale);
         }
+
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+
+        movement.x = 0f;
     }
 
     private void Jump()

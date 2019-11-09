@@ -16,6 +16,12 @@ public class EnemyBasic : MonoBehaviour
 
     private Transform player = null;
 
+    [SerializeField]
+    private float Health;
+
+    public float InvulnerabilityTime = 0.5f;
+    private float damageTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +37,6 @@ public class EnemyBasic : MonoBehaviour
             {
                 // seek the player
                 moveVector = player.transform.position - this.transform.position;
-                Debug.Log(moveVector.x + " " + moveVector.y);
 
                 // if in range then state == states.attacking
             }
@@ -43,6 +48,22 @@ public class EnemyBasic : MonoBehaviour
         else
         {
             Debug.Log("Player not found");
+        }
+
+        if(Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        damageTimer -= Time.deltaTime;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if(damageTimer <= 0)
+        {
+            Health -= damage;
+            damageTimer = InvulnerabilityTime;
         }
     }
 }
