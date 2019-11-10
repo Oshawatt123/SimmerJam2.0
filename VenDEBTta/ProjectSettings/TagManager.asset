@@ -10,6 +10,7 @@ TagManager:
   - Checkpoint
   - Coin
   - Health
+  - Boss
   layers:
   - Default
   - TransparentFX

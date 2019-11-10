@@ -41,6 +41,9 @@ public class EnemyBasic : MonoBehaviour
 
     private SpawnCoins coinSpawner;
 
+    public AudioSource audioSource;
+    public AudioClip deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -124,8 +127,9 @@ public class EnemyBasic : MonoBehaviour
 
     private void Die()
     {
-        coinSpawner.CoinShower(1, 3, transform.position);
+        coinSpawner.CoinShower(1, 3, transform.position, Random.Range(0, 10) > 5);
         Instantiate(hitParticleEffect, transform, true);
+        audioSource.PlayOneShot(deathSound);
         Destroy(this.gameObject);
     }
 

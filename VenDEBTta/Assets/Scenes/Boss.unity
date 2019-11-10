@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &98335109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1118,7 +1118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02209258, y: 1.204319}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1129,7 +1129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.92, y: 1}
+  m_Size: {x: 2.140926, y: 5.2765727}
   m_EdgeRadius: 0
 --- !u!4 &589206797
 Transform:
@@ -1268,7 +1268,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.30724376, y: 0}
+  m_Offset: {x: -0.0053114295, y: 1.0077007}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1279,7 +1279,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6144873, y: 1}
+  m_Size: {x: 2.2183518, y: 4.293459}
   m_EdgeRadius: 0
 --- !u!1 &831236808
 GameObject:
@@ -1420,7 +1420,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25997543, y: 0}
+  m_Offset: {x: -0.012500107, y: 0.983124}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1431,7 +1431,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5199509, y: 1}
+  m_Size: {x: 2.0649018, y: 4.637551}
   m_EdgeRadius: 0
 --- !u!1 &910371872
 GameObject:
@@ -2118,6 +2118,7 @@ GameObject:
   - component: {fileID: 1416669960}
   - component: {fileID: 1416669959}
   - component: {fileID: 1416669961}
+  - component: {fileID: 1416669962}
   m_Layer: 0
   m_Name: BossMain
   m_TagString: Enemy
@@ -2189,6 +2190,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &1416669962
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416669958}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 62855e4330ec5af42ba07955953bbb11, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.05
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1457451789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3739,6 +3836,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 2631561701267942050, guid: 84d5dd90f4923464e9978be8976bb696,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 414719145}
+    - target: {fileID: 2631561701267942050, guid: 84d5dd90f4923464e9978be8976bb696,
+        type: 3}
+      propertyPath: coinCounterUI
+      value: 
+      objectReference: {fileID: 34864777}
     - target: {fileID: 2631561701267942048, guid: 84d5dd90f4923464e9978be8976bb696,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3794,16 +3901,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2631561701267942050, guid: 84d5dd90f4923464e9978be8976bb696,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 414719145}
-    - target: {fileID: 2631561701267942050, guid: 84d5dd90f4923464e9978be8976bb696,
-        type: 3}
-      propertyPath: coinCounterUI
-      value: 
-      objectReference: {fileID: 34864777}
     - target: {fileID: 5251930460871335474, guid: 84d5dd90f4923464e9978be8976bb696,
         type: 3}
       propertyPath: projectile
@@ -4133,9 +4230,10 @@ GameObject:
   - component: {fileID: 2126487166}
   - component: {fileID: 2126487167}
   - component: {fileID: 2126487168}
+  - component: {fileID: 2126487169}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4182,7 +4280,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126487165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -4191,6 +4289,23 @@ CircleCollider2D:
   m_Offset: {x: -0.84, y: -3.92}
   serializedVersion: 2
   m_Radius: 3.22
+--- !u!114 &2126487169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126487165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63e94f9f279c20428071d18695e13b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 20
+  dead: 0
+  iFrame: 0.2
+  healthBar: {fileID: 1810926037}
+  name: {fileID: 70833882}
 --- !u!1001 &3300901403391777360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4246,6 +4361,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2571011654212807561, guid: e01ec89c23d10ee4bb8dcb2b4007d78e,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7489905364324159002, guid: e01ec89c23d10ee4bb8dcb2b4007d78e,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7489905364324159002, guid: e01ec89c23d10ee4bb8dcb2b4007d78e,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e01ec89c23d10ee4bb8dcb2b4007d78e, type: 3}
 --- !u!1001 &5589478167273371251
@@ -4260,6 +4390,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1848723251}
+    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1814076845}
     - target: {fileID: 5589478167774588577, guid: 409331629920ffb4695543f3134181bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4315,16 +4455,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
-        type: 3}
-      propertyPath: SpawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1848723251}
-    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
-        type: 3}
-      propertyPath: SpawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1814076845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409331629920ffb4695543f3134181bb, type: 3}
 --- !u!1001 &7124385580445093210

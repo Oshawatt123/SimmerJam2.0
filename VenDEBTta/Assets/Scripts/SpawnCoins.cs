@@ -9,29 +9,50 @@ public class SpawnCoins : MonoBehaviour
     public GameObject HealthPickUp;
 
     public Transform[] SpawnPoints;
-    public void CoinShower(int min, int max, bool isLeft)
+    public void CoinShower(int min, int max, bool isLeft, bool coin)
     {
         GameObject newCoin;
+        GameObject spawnObject;
+        int index;
+        if(isLeft)
+        {
+            index = 0;
+        }
+        else
+        {
+            index = 1;
+        }
+        if(coin)
+        {
+            spawnObject = silverCoin;
+        }
+        else
+        {
+            spawnObject = HealthPickUp;
+        }
         for (int i = 0; i < Random.Range(min, max); i++)
         {
-            if(isLeft)
-            {
-                newCoin = Instantiate(silverCoin, SpawnPoints[0].position, Quaternion.identity);
-            }
-            else
-            {
-                newCoin = Instantiate(silverCoin, SpawnPoints[1].position, Quaternion.identity);
-            }
+            
+            newCoin = Instantiate(spawnObject, SpawnPoints[index].position, Quaternion.identity);
             newCoin.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-2, 2), 0f);
         }
     }
 
-    public void CoinShower(int min, int max, Vector3 Position)
+    public void CoinShower(int min, int max, Vector3 Position, bool coin)
     {
         GameObject newCoin;
+        GameObject spawnObject;
+        if (coin)
+        {
+            spawnObject = silverCoin;
+        }
+        else
+        {
+            spawnObject = HealthPickUp;
+        }
         for (int i = 0; i < Random.Range(min, max); i++)
         {
-            newCoin = Instantiate(silverCoin, Position, Quaternion.identity);
+            newCoin = Instantiate(spawnObject, Position, Quaternion.identity);
         }
     }
 }

@@ -47,7 +47,6 @@ public class BossLogic : MonoBehaviour
 
     public Transform[] SpawnLocations;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -89,10 +88,22 @@ public class BossLogic : MonoBehaviour
         }
         else if (state == states.Phase2)
         {
-            Debug.Log("Phase 2");
             if(mainStage.IsTouching(player))
             {
-                nextAttack = attack.spawnBanker;
+                int attackType = Random.Range(0, 100);
+
+                if(attackType < 60)
+                {
+                    nextAttack = attack.spawnBanker;
+                }
+                else if (attackType < 80)
+                {
+                    nextAttack = attack.interest;
+                }
+                else
+                {
+                    nextAttack = attack.overdraft;
+                }
             }
 
             if(attackTimer <= 0)
@@ -106,6 +117,7 @@ public class BossLogic : MonoBehaviour
 
     private void bossAttack(attack attackToPerform)
     {
+
         if(attackToPerform == attack.leftHand)
         {
             anim.SetTrigger("LeftAttack");
@@ -118,10 +130,37 @@ public class BossLogic : MonoBehaviour
         {
             SpawnBankers();
         }
+        else if (attackToPerform == attack.interest)
+        {
+            Debug.Log("Interest");
+        }
+        else if (attackToPerform == attack.overdraft)
+        {
+            Debug.Log("Overdraft");
+        }
     }
 
     public void SpawnBankers()
     {
-        Instantiate(banker, SpawnLocations[Random.Range(0, SpawnLocations.Length)].position, Quaternion.identity);
+        for (int i = 0; i < Random.Range(2, 5); i++)
+        {
+            Instantiate(banker, SpawnLocations[Random.Range(0, SpawnLocations.Length)].position, Quaternion.identity);
+        }
+    }
+
+    public void InterestAttack()
+    {
+        /* GameObject interestInst = Instantiate(interestPrefab, SpawnLocations[Random.Range(0, SpawnLocations.Length)].position, Quaternion.identity) as GameObject;
+         * interestInst.transform.rotation = new Vector3(0f, 0f, Random.Range(-70, -110);
+         * let the interest laser motor itself
+         */
+    }
+
+    public void OverdraftAttack()
+    {
+        /* GameObject OverdraftInst = Instantiate(OverdraftPrefab, SpawnLocations[Random.Range(0, SpawnLocations.Length)].position, Quaternion.identity) as GameObject;
+         * OverdraftInst.transform.rotation = new Vector3(0f, 0f, Random.Range(-70, -110);
+         * let the overdraft laser motor itself
+         */
     }
 }
