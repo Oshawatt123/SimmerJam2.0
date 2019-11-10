@@ -16,6 +16,8 @@ public class PlayerAttackMelee : MonoBehaviour
     public Animator anim;
 
     public Transform bigCamera;
+
+    public AudioSource audioSource;
     private void Awake()
     {
         attackBox.enabled = false;
@@ -27,6 +29,7 @@ public class PlayerAttackMelee : MonoBehaviour
         if (Input.GetAxis("Attack") > 0 && !attacking)
         {
             attacking = true;
+            audioSource.Play();
             attackTimer = attackCooldown;
 
             attackBox.enabled = true;

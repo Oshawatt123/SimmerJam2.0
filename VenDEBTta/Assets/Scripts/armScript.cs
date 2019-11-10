@@ -35,7 +35,7 @@ public class armScript : MonoBehaviour
             if (health <= 0)
             {
                 Debug.Log("Dead");
-                coinSpawner.CoinShower(2, 5, isLeft);
+                coinSpawner.CoinShower(2, 5, isLeft, Random.Range(0,10)>5);
                 dead = true;
                 name.text = "Dead";
             }

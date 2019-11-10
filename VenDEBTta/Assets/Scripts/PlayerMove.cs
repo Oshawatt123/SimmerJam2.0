@@ -37,6 +37,11 @@ public class PlayerMove : MonoBehaviour
     public TextMeshProUGUI coinCounterUI;
     public int coins;
 
+    public AudioSource audioSource;
+    public AudioClip healthPickUp;
+    public AudioClip coinPickUp;
+    public AudioClip jump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,11 +124,13 @@ public class PlayerMove : MonoBehaviour
         else if(collision.CompareTag("Coin"))
         {
             coins += 1;
+            audioSource.PlayOneShot(coinPickUp, 0.5f);
             Destroy(collision.gameObject);
         }
         else if(collision.CompareTag("Health"))
         {
             playerHealth += 1;
+            audioSource.PlayOneShot(healthPickUp, 0.5f);
             Destroy(collision.gameObject);
         }
     }
@@ -131,6 +138,7 @@ public class PlayerMove : MonoBehaviour
     private void Jump()
     {
         movement.y += jumpHeight;
+        audioSource.PlayOneShot(jump, 0.3f);
     }
 
     public void TakeDamage(float damage)
