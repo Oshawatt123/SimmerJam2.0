@@ -19,6 +19,8 @@ public class EnemyBasic : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private Transform player = null;
+    private Vector2 vectorToPlayer;
+    private float scale;
 
     [SerializeField]
     private float Health;
@@ -26,11 +28,19 @@ public class EnemyBasic : MonoBehaviour
     public float InvulnerabilityTime = 0.5f;
     private float damageTimer;
 
+    public EnemyAttackMelee attackScript;
+
+    public float knockBackForce;
+    public GameObject hitParticleEffect;
+
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb2d = GetComponent<Rigidbody2D>();
+        scale = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -38,7 +48,7 @@ public class EnemyBasic : MonoBehaviour
     {
         if(player)
         {
-            Vector2 vectorToPlayer = player.transform.position - this.transform.position;
+            vectorToPlayer = player.transform.position - this.transform.position;
             if (state == states.seeking)
             {
                 // seek the player
@@ -47,7 +57,7 @@ public class EnemyBasic : MonoBehaviour
                 // if in range then state == states.attacking
                 if(vectorToPlayer.magnitude < attackRange)
                 {
-
+                    state = states.attacking;
                 }
             }
             else if (state == states.idle)
@@ -59,7 +69,18 @@ public class EnemyBasic : MonoBehaviour
             }
             else if (state == states.attacking)
             {
+                anim.SetTrigger("Attacking");
+                state = states.seeking;
+                attackScript.eventAttacking = true;
+            }
 
+            if (vectorToPlayer.x < 0)
+            {
+                transform.localScale = new Vector3(-scale, transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(scale, transform.localScale.y, transform.localScale.z);
             }
         }
         else
@@ -67,12 +88,16 @@ public class EnemyBasic : MonoBehaviour
             Debug.Log("Player not found");
         }
 
+        
+
         if(Health <= 0)
         {
-            Destroy(this.gameObject);
+            Die();
         }
 
         damageTimer -= Time.deltaTime;
+
+        anim.SetFloat("velocityMagnitude", rb2d.velocity.magnitude);
     }
 
     public void TakeDamage(float damage)
@@ -81,8 +106,23 @@ public class EnemyBasic : MonoBehaviour
         {
             Health -= damage;
             damageTimer = InvulnerabilityTime;
+            Instantiate(hitParticleEffect, transform);
+            KnockBack();
         }
     }
+
+    private void Die()
+    {
+        Instantiate(hitParticleEffect, transform, true);
+        Destroy(this.gameObject);
+    }
+
+    public void KnockBack()
+    {
+        rb2d.AddForce(-vectorToPlayer.normalized * knockBackForce, ForceMode2D.Impulse);
+        Debug.Log("Knockback: " + -vectorToPlayer.normalized * knockBackForce);
+    }
+
 
     private void OnDrawGizmos()
     {

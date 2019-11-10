@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 98664699}
   - component: {fileID: 98664698}
   - component: {fileID: 98664697}
-  - component: {fileID: 98664696}
-  - component: {fileID: 98664695}
-  m_Layer: 0
-  m_Name: Banker 1
+  - component: {fileID: 3635352427594991395}
+  - component: {fileID: 921308268757223042}
+  - component: {fileID: 885503485}
+  m_Layer: 9
+  m_Name: EnemyBanker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 98664694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.584, y: 1.265, z: -0.041015625}
-  m_LocalScale: {x: 3.825095, y: 6.683133, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1034730699}
   m_Father: {fileID: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 465dc764be3464e48b952f4c4340c9f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,11 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e85f72d633033d4d9371aa845e1552b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekRange: 2
+  seekRange: 3.69
   attackRange: 0.25
-  moveSpeed: 150
+  moveSpeed: 104.03
   Health: 5
-  InvulnerabilityTime: 0.3
+  InvulnerabilityTime: 1
+  attackScript: {fileID: 885503485}
+  knockBackForce: 1
+  hitParticleEffect: {fileID: 7310314055676711207, guid: 237414ec089f9034795622925b7eb321,
+    type: 3}
+  anim: {fileID: 3635352427594991395}
 --- !u!50 &98664697
 Rigidbody2D:
   serializedVersion: 4
@@ -122,8 +128,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &98664696
-BoxCollider2D:
+--- !u!95 &3635352427594991395
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98664694}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98ddbf0c5c027414eb0c49d59c959af5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &921308268757223042
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,20 +160,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
---- !u!114 &98664695
+  m_Offset: {x: 0.011735916, y: -0.0058680773}
+  m_Size: {x: 0.26060104, y: 0.7183244}
+  m_Direction: 0
+--- !u!114 &885503485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,13 +172,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 98664694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249a8f05592820444a1579fd071cb9b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d5e5a4815c2515418b114f1b23c0b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackBox: {fileID: 1034730701}
   attackCooldown: 0.5
+  attacking: 0
   damage: 0
-  anim: {fileID: 0}
+  anim: {fileID: 3635352427594991395}
 --- !u!1 &1034730698
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,10 +235,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12816799, y: -0.012206309}
+  m_Offset: {x: 0.346066, y: -0.088813424}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -233,5 +249,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18216646, y: 0.13334084}
+  m_Size: {x: 0.50318813, y: 0.3449223}
   m_EdgeRadius: 0
