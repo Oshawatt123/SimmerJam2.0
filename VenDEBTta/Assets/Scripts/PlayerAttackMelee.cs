@@ -15,6 +15,7 @@ public class PlayerAttackMelee : MonoBehaviour
 
     public Animator anim;
 
+    public Transform bigCamera;
     private void Awake()
     {
         attackBox.enabled = false;
@@ -34,6 +35,11 @@ public class PlayerAttackMelee : MonoBehaviour
             {
                 anim.SetTrigger("Attacking");
             }
+
+            if(bigCamera)
+            {
+                bigCamera.GetComponent<ShakeBehaviour>().TriggerShake(1f);
+            }
         }
 
         if(attacking)
@@ -48,7 +54,5 @@ public class PlayerAttackMelee : MonoBehaviour
                 attackBox.enabled = false;
             }
         }
-
-        Debug.Log(attackTimer);
     }
 }
