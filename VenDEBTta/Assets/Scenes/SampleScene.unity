@@ -4650,7 +4650,7 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: 1.4277687
+      e00: 281.813
       e01: 8.785469e-39
       e02: NaN
       e03: 151.693
@@ -4659,7 +4659,7 @@ Tilemap:
       e12: NaN
       e13: 1e-45
       e20: 8.785547e-39
-      e21: 0.00028581198
+      e21: 0.00023921569
       e22: 0
       e23: 5.9127283
       e30: 0
@@ -4668,11 +4668,11 @@ Tilemap:
       e33: 1e-45
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 2.1e-44, g: 2.1e-44, b: 2.1e-44, a: 2.1e-44}
+    m_Data: {r: 7e-44, g: 7e-44, b: 7e-44, a: 7e-44}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: -1, z: 0}
-  m_Size: {x: 18, y: 7, z: 1}
+  m_Size: {x: 51, y: 7, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -4752,7 +4752,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4813,8 +4813,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingOrder: 69
+  m_Sprite: {fileID: 21300000, guid: 6f947c896c6325b45b29ccb18e0c0e99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4833,8 +4833,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725086029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.948, y: 0.205, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.305, y: 1.061, z: 0}
+  m_LocalScale: {x: 1.5144107, y: 1.5144107, z: 1.5144107}
   m_Children:
   - {fileID: 406510012}
   - {fileID: 2090440774}
