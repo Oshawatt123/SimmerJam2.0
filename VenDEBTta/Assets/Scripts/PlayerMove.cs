@@ -24,14 +24,18 @@ public class PlayerMove : MonoBehaviour
 
     public Grounded grounded;
 
-    public float playerHealth;
+    public float playerMaxHealth;
+    private float playerHealth;
     public float invulnerabilityTime;
     private float damageTimer;
     public Image healthBar;
 
+    private Vector3 respawn = new Vector3(0f, 4f, 0f);
+
     // Start is called before the first frame update
     void Start()
     {
+        playerHealth = playerMaxHealth;
         rb2D = GetComponent<Rigidbody2D>();
         scale = transform.localScale.x;
     }
@@ -86,10 +90,23 @@ public class PlayerMove : MonoBehaviour
             newColor.a = 1;
 
             healthBar.color = newColor;
+            healthBar.fillAmount = playerHealth / playerMaxHealth;
         }
         else
         {
             Debug.Log("Dead AF");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("DeathBox"))
+        {
+            transform.position = respawn;
+        }
+        else if (collision.CompareTag("Checkpoint"))
+        {
+            respawn = collision.transform.position;
         }
     }
 
