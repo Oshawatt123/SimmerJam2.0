@@ -16,7 +16,7 @@ public class armScript : MonoBehaviour
 
     private void Start()
     {
-        health = MaxHealth / 2;
+        health = MaxHealth;
     }
 
     // Update is called once per frame
@@ -24,14 +24,20 @@ public class armScript : MonoBehaviour
     {
         if (health <= 0)
         {
-
+            Debug.Log("Dead");
         }
 
         healthBar.fillAmount = (health / MaxHealth);
+
+        damageTimer -= Time.deltaTime;
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        if(damageTimer <= 0)
+        {
+            damageTimer = iFrame;
+            health -= damage;
+        }
     }
 }
