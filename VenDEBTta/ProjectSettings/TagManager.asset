@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - DeathBox
   - Checkpoint
+  - Coin
+  - Health
   layers:
   - Default
   - TransparentFX

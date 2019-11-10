@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class armScript : MonoBehaviour
 {
@@ -9,10 +10,17 @@ public class armScript : MonoBehaviour
     public float MaxHealth;
     private float health;
 
+    public bool dead;
+
     public float iFrame;
     private float damageTimer;
 
     public Image healthBar;
+    public TextMeshProUGUI name;
+
+    public SpawnCoins coinSpawner;
+
+    public bool isLeft;
 
     private void Start()
     {
@@ -22,14 +30,20 @@ public class armScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if(!dead)
         {
-            Debug.Log("Dead");
+            if (health <= 0)
+            {
+                Debug.Log("Dead");
+                coinSpawner.CoinShower(2, 5, isLeft);
+                dead = true;
+                name.text = "Dead";
+            }
+
+            healthBar.fillAmount = (health / MaxHealth);
+
+            damageTimer -= Time.deltaTime;
         }
-
-        healthBar.fillAmount = (health / MaxHealth);
-
-        damageTimer -= Time.deltaTime;
     }
 
     public void TakeDamage(float damage)

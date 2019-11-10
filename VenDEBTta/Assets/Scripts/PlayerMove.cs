@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
     private float moveModifier;
+    public bool lookingRight = true;
     [SerializeField]
     private float jumpHeight;
     [SerializeField]
@@ -20,7 +22,7 @@ public class PlayerMove : MonoBehaviour
 
     private Rigidbody2D rb2D;
 
-    private Vector2 movement;
+    public Vector2 movement;
 
     public Grounded grounded;
 
@@ -31,6 +33,9 @@ public class PlayerMove : MonoBehaviour
     public Image healthBar;
 
     private Vector3 respawn = new Vector3(0f, 4f, 0f);
+
+    public TextMeshProUGUI coinCounterUI;
+    public int coins;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +53,7 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetAxis("Horizontal") != 0)
             {
                 movement.x += Input.GetAxis("Horizontal") * moveModifier;
+                lookingRight = Input.GetAxis("Horizontal") > 0;
             }
 
             if (Input.GetButtonDown("Jump") && grounded.isGrounded)
@@ -91,6 +97,8 @@ public class PlayerMove : MonoBehaviour
 
             healthBar.color = newColor;
             healthBar.fillAmount = playerHealth / playerMaxHealth;
+
+            coinCounterUI.text = coins.ToString();
         }
         else
         {
@@ -107,6 +115,16 @@ public class PlayerMove : MonoBehaviour
         else if (collision.CompareTag("Checkpoint"))
         {
             respawn = collision.transform.position;
+        }
+        else if(collision.CompareTag("Coin"))
+        {
+            coins += 1;
+            Destroy(collision.gameObject);
+        }
+        else if(collision.CompareTag("Health"))
+        {
+            playerHealth += 1;
+            Destroy(collision.gameObject);
         }
     }
 

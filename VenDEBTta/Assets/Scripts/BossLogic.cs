@@ -19,6 +19,7 @@ public class BossLogic : MonoBehaviour
 
     private enum attack
     {
+        noAttack,
         leftHand,
         rightHand,
         headSlam,
@@ -40,6 +41,10 @@ public class BossLogic : MonoBehaviour
     };
     private states state;
 
+    public GameObject banker;
+
+    public Transform[] SpawnLocations;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,11 +57,12 @@ public class BossLogic : MonoBehaviour
     {
         if(state == states.Phase1)
         {
-            if (leftStage.IsTouching(player) && leftArm.GetHealth() > 0)
+            nextAttack = attack.noAttack;
+            if (leftStage.IsTouching(player) && !leftArm.dead)
             {
                 nextAttack = attack.leftHand;
             }
-            if (rightStage.IsTouching(player) && rightArm.GetHealth() > 0)
+            if (rightStage.IsTouching(player) && !rightArm.dead)
             {
                 nextAttack = attack.rightHand;
             }
@@ -85,9 +91,16 @@ public class BossLogic : MonoBehaviour
         }
         else if (state == states.Phase2)
         {
+            Debug.Log("Phase 2");
             if(mainStage.IsTouching(player))
             {
                 nextAttack = attack.spawnBanker;
+            }
+
+            if(attackTimer <= 0)
+            {
+                bossAttack(nextAttack);
+                attackTimer = attackCooldown;
             }
         }
         attackTimer -= Time.deltaTime;
@@ -107,10 +120,14 @@ public class BossLogic : MonoBehaviour
         {
             anim.SetTrigger("LeftAttack");
         }
+        else if (attackToPerform == attack.spawnBanker)
+        {
+            SpawnBankers();
+        }
     }
 
-    public void TakeDamage(float damage)
+    public void SpawnBankers()
     {
-
+        Instantiate(banker, SpawnLocations[Random.Range(0, SpawnLocations.Length)].position, Quaternion.identity);
     }
 }

@@ -39,6 +39,8 @@ public class EnemyBasic : MonoBehaviour
 
     public Animator anim;
 
+    private SpawnCoins coinSpawner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,8 @@ public class EnemyBasic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb2d = GetComponent<Rigidbody2D>();
         scale = transform.localScale.x;
+
+        coinSpawner = GameObject.Find("CoinSpawner").GetComponent<SpawnCoins>();
     }
 
     // Update is called once per frame
@@ -120,6 +124,7 @@ public class EnemyBasic : MonoBehaviour
 
     private void Die()
     {
+        coinSpawner.CoinShower(1, 3, transform.position);
         Instantiate(hitParticleEffect, transform, true);
         Destroy(this.gameObject);
     }
