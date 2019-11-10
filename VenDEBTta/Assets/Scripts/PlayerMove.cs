@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float maxFallSpeed;
 
+    public Animator anim;
+
+    private float scale;
+
     private Rigidbody2D rb2D;
 
     private Vector2 movement;
@@ -23,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        scale = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -39,23 +44,31 @@ public class PlayerMove : MonoBehaviour
             Jump();
         }
 
-        // Move & reset movement vector for next frame
         rb2D.velocity = movement * Time.deltaTime;
+
+        // Gravity & jumping
         if(!grounded.isGrounded)
         {
             movement.y = Mathf.Max(-maxFallSpeed, movement.y - rb2D.gravityScale);
+            anim.SetBool("inAir", true);
+        }
+        else
+        {
+            anim.SetBool("inAir", false);
         }
 
         if(Input.GetAxis("Horizontal") < 0)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-scale, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(scale, transform.localScale.y, transform.localScale.z);
         }
 
         movement.x = 0f;
+
+        anim.SetFloat("velocityMagnitude", rb2D.velocity.magnitude);
     }
 
     private void Jump()

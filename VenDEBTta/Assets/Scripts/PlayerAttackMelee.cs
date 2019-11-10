@@ -13,6 +13,8 @@ public class PlayerAttackMelee : MonoBehaviour
 
     public float damage;
 
+    public Animator anim;
+
     private void Awake()
     {
         attackBox.enabled = false;
@@ -27,6 +29,11 @@ public class PlayerAttackMelee : MonoBehaviour
             attackTimer = attackCooldown;
 
             attackBox.enabled = true;
+
+            if(anim)
+            {
+                anim.SetTrigger("Attacking");
+            }
         }
 
         if(attacking)

@@ -42,7 +42,7 @@ public class EnemyBasic : MonoBehaviour
             if (state == states.seeking)
             {
                 // seek the player
-                rb2d.velocity = vectorToPlayer * moveSpeed * Time.deltaTime;
+                rb2d.velocity = new Vector2(vectorToPlayer.x, 0f) * moveSpeed * Time.deltaTime;
 
                 // if in range then state == states.attacking
                 if(vectorToPlayer.magnitude < attackRange)
