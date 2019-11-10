@@ -23,7 +23,9 @@ public class BossLogic : MonoBehaviour
         leftHand,
         rightHand,
         headSlam,
-        spawnBanker
+        spawnBanker,
+        interest,
+        overdraft
     };
     private attack nextAttack;
 
@@ -65,10 +67,6 @@ public class BossLogic : MonoBehaviour
             if (rightStage.IsTouching(player) && !rightArm.dead)
             {
                 nextAttack = attack.rightHand;
-            }
-            if (mainStage.IsTouching(player))
-            {
-                nextAttack = attack.headSlam;
             }
 
             if (attackTimer <= 0)
@@ -115,10 +113,6 @@ public class BossLogic : MonoBehaviour
         else if (attackToPerform == attack.rightHand)
         {
             anim.SetTrigger("RightAttack");
-        }
-        else if (attackToPerform == attack.headSlam)
-        {
-            anim.SetTrigger("LeftAttack");
         }
         else if (attackToPerform == attack.spawnBanker)
         {
