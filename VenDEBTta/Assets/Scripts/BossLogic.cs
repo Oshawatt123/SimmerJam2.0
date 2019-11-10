@@ -9,6 +9,9 @@ public class BossLogic : MonoBehaviour
     public BoxCollider2D rightStage;
     public BoxCollider2D mainStage;
 
+    public armScript leftArm;
+    public armScript rightArm;
+
     public ShakeBehaviour shake;
     public bool shaking;
 
@@ -18,9 +21,9 @@ public class BossLogic : MonoBehaviour
     {
         leftHand,
         rightHand,
-        headSlam
+        headSlam,
+        spawnBanker
     };
-
     private attack nextAttack;
 
     public float attackCooldown;
@@ -29,6 +32,14 @@ public class BossLogic : MonoBehaviour
     public Animator anim;
 
     private float health;
+
+    private enum states
+    {
+        Phase1,
+        Phase2,
+    };
+    private states state;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,31 +50,46 @@ public class BossLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(leftStage.IsTouching(player))
+        if(state == states.Phase1)
         {
-            nextAttack = attack.leftHand;
-        }
-        if(rightStage.IsTouching(player))
-        {
-            nextAttack = attack.rightHand;
-        }
-        if (mainStage.IsTouching(player))
-        {
-            nextAttack = attack.headSlam;
-        }
+            if (leftStage.IsTouching(player) && leftArm.GetHealth() > 0)
+            {
+                nextAttack = attack.leftHand;
+            }
+            if (rightStage.IsTouching(player) && rightArm.GetHealth() > 0)
+            {
+                nextAttack = attack.rightHand;
+            }
+            if (mainStage.IsTouching(player))
+            {
+                nextAttack = attack.headSlam;
+            }
 
-        if(attackTimer <= 0)
-        {
-            bossAttack(nextAttack);
-            attackTimer = attackCooldown;
-        }
+            if (attackTimer <= 0)
+            {
+                bossAttack(nextAttack);
+                attackTimer = attackCooldown;
+            }
 
-        if(shaking)
-        {
-            shake.TriggerShake(0.5f);
-            shaking = false;
+            if (shaking)
+            {
+                shake.TriggerShake(0.5f);
+                shaking = false;
+            }
+            
+            if(leftArm.GetHealth() <= 0 && rightArm.GetHealth() <= 0)
+            {
+                anim.SetTrigger("Phase2");
+                state = states.Phase2;
+            }
         }
-
+        else if (state == states.Phase2)
+        {
+            if(mainStage.IsTouching(player))
+            {
+                nextAttack = attack.spawnBanker;
+            }
+        }
         attackTimer -= Time.deltaTime;
     }
 

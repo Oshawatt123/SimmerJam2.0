@@ -40,4 +40,9 @@ public class armScript : MonoBehaviour
             health -= damage;
         }
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }
