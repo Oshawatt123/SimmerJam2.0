@@ -9,7 +9,7 @@ public class ShakeBehaviour : MonoBehaviour
 
     private float shakeDuration = 0f;
 
-    private float shakeMagnitude = 0.7f;
+    private float shakeMagnitude = 0.3f;
 
     private float dampingSpeed = 1.0f;
 
@@ -47,7 +47,7 @@ public class ShakeBehaviour : MonoBehaviour
 
     public void TriggerShake(float duration)
     {
-        Debug.Log("SHake bOi!");
+        //Debug.Log("SHake bOi!");
         shakeDuration = duration;
     }
 }

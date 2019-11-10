@@ -176,6 +176,8 @@ MonoBehaviour:
   anim: {fileID: 2631561701267942054}
   grounded: {fileID: 2631561701500209740}
   playerHealth: 5
+  invulnerabilityTime: 1
+  healthBar: {fileID: 0}
 --- !u!114 &2631561701267942049
 MonoBehaviour:
   m_ObjectHideFlags: 0

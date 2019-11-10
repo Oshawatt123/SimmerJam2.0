@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBasic : MonoBehaviour
 {
@@ -23,7 +24,10 @@ public class EnemyBasic : MonoBehaviour
     private float scale;
 
     [SerializeField]
+    public float maxHealth;
     private float Health;
+
+    public Image healthBar;
 
     public float InvulnerabilityTime = 0.5f;
     private float damageTimer;
@@ -38,6 +42,7 @@ public class EnemyBasic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Health = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb2d = GetComponent<Rigidbody2D>();
         scale = transform.localScale.x;
@@ -108,6 +113,8 @@ public class EnemyBasic : MonoBehaviour
             damageTimer = InvulnerabilityTime;
             Instantiate(hitParticleEffect, transform);
             KnockBack();
+
+            healthBar.fillAmount = Health / maxHealth;
         }
     }
 
