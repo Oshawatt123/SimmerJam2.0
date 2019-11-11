@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9130504299924503370, guid: 329320b23af3b984ab56a2803da651af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9130504299924503366, guid: 329320b23af3b984ab56a2803da651af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5166,7 +5171,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904551149}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -5491,8 +5496,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2126487166}
   - component: {fileID: 2126487167}
-  - component: {fileID: 2126487168}
   - component: {fileID: 2126487169}
+  - component: {fileID: 2126487168}
   m_Layer: 0
   m_Name: Head
   m_TagString: Boss
@@ -5535,8 +5540,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &2126487168
-CircleCollider2D:
+--- !u!70 &2126487168
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5548,9 +5553,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.84, y: -3.92}
-  serializedVersion: 2
-  m_Radius: 3.22
+  m_Offset: {x: -0.8200002, y: -4.915201}
+  m_Size: {x: 5.201352, y: 6.9251842}
+  m_Direction: 0
 --- !u!114 &2126487169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5652,6 +5657,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1848723251}
+    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
+        type: 3}
+      propertyPath: SpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1814076845}
+    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
+        type: 3}
+      propertyPath: HealthPickUp
+      value: 
+      objectReference: {fileID: 1229837053918076012, guid: 69d8d4d366213734ea0bb60328c6a8b9,
+        type: 3}
     - target: {fileID: 5589478167774588577, guid: 409331629920ffb4695543f3134181bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5707,22 +5728,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
-        type: 3}
-      propertyPath: SpawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1848723251}
-    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
-        type: 3}
-      propertyPath: SpawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1814076845}
-    - target: {fileID: 5589478167774588578, guid: 409331629920ffb4695543f3134181bb,
-        type: 3}
-      propertyPath: HealthPickUp
-      value: 
-      objectReference: {fileID: 1229837053918076012, guid: 69d8d4d366213734ea0bb60328c6a8b9,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 409331629920ffb4695543f3134181bb, type: 3}
 --- !u!1001 &8999630291744518763
