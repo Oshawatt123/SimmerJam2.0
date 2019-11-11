@@ -23,10 +23,10 @@ public class projectileMotion : MonoBehaviour
     public float damage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Boss"))
+        if (collision.CompareTag("Boss") || collision.CompareTag("Enemy"))
         {
-            Debug.Log("Hit the boss");
             collision.SendMessageUpwards("TakeDamage", damage);
+            Destroy(this.gameObject);
         }
     }
 }
