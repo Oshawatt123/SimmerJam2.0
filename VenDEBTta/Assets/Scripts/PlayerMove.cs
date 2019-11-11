@@ -117,6 +117,10 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position = respawn;
         }
+        else if (collision.CompareTag("RumbleDamage"))
+        {
+            TakeDamage(1);
+        }
         else if (collision.CompareTag("Checkpoint"))
         {
             respawn = collision.transform.position;

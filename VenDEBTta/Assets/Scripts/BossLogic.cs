@@ -11,6 +11,7 @@ public class BossLogic : MonoBehaviour
 
     public armScript leftArm;
     public armScript rightArm;
+    public headScript head;
 
     public ShakeBehaviour shake;
     public bool shaking;
@@ -40,8 +41,11 @@ public class BossLogic : MonoBehaviour
     {
         Phase1,
         Phase2,
+        Defeated
     };
     private states state;
+    private bool defeated;
+    public CanvasGroup GameOverScreen;
 
     public GameObject banker;
 
@@ -50,7 +54,9 @@ public class BossLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameOverScreen.alpha = 0;
+        GameOverScreen.interactable = false;
+        GameOverScreen.blocksRaycasts = false;
     }
 
     // Update is called once per frame
@@ -90,7 +96,7 @@ public class BossLogic : MonoBehaviour
         {
             if(mainStage.IsTouching(player))
             {
-                int attackType = Random.Range(0, 100);
+                /*int attackType = Random.Range(0, 100);
 
                 if(attackType < 60)
                 {
@@ -103,7 +109,9 @@ public class BossLogic : MonoBehaviour
                 else
                 {
                     nextAttack = attack.overdraft;
-                }
+                }*/
+
+                nextAttack = attack.spawnBanker;
             }
 
             if(attackTimer <= 0)
@@ -111,6 +119,22 @@ public class BossLogic : MonoBehaviour
                 bossAttack(nextAttack);
                 attackTimer = attackCooldown;
             }
+
+            if(head.getHealth() <= 0)
+            {
+                state = states.Defeated;
+            }
+        }
+        else if (state == states.Defeated)
+        {
+            if(!defeated)
+            {
+                anim.SetTrigger("Victory");
+                GameOverScreen.alpha = 1;
+                GameOverScreen.interactable = true;
+                GameOverScreen.blocksRaycasts = true;
+            }
+            defeated = true;
         }
         attackTimer -= Time.deltaTime;
     }

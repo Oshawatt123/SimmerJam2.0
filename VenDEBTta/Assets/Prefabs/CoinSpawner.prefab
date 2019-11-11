@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   silverCoin: {fileID: 2025603524560168610, guid: 5ee7d18194ef33e4bb1d41de4abb1309,
     type: 3}
-  HealthPickUp: {fileID: 0}
+  HealthPickUp: {fileID: 1229837053918076012, guid: 69d8d4d366213734ea0bb60328c6a8b9,
+    type: 3}
   SpawnPoints:
   - {fileID: 0}
   - {fileID: 0}

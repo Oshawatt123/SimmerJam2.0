@@ -49,4 +49,9 @@ public class headScript : MonoBehaviour
             health -= damage;
         }
     }
+
+    public float getHealth()
+    {
+        return health;
+    }
 }
